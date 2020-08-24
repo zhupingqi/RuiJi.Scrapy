@@ -1,0 +1,49 @@
+﻿{
+  "author": "416803633@qq.com",
+  "background": {
+    "scripts": [
+      "/js/background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": {
+      "20": "/img/icon.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "__MSG_name__"
+  },
+  "content_scripts": [
+    {
+      "all_frames": false,
+      "css": [ "/css/content-page.css", "/css/content-chain.css" ],
+      "js": [
+        "/js/content.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "default_locale": "en",
+  "description": "__MSG_description__",
+  "homepage_url": "http://www.scraper.top",
+  "icons": {
+    "128": "/img/icon128.png",
+    "16": "/img/icon.png",
+    "48": "/img/icon48.png"
+  },
+  "manifest_version": 2,
+  "minimum_chrome_version": "22.0.0",
+  "name": "__MSG_name__",
+  "options_ui": {
+    "page": "settings.html"
+  },
+  "options_page": "settings.html",
+  "permissions": [ "unlimitedStorage", "storage", "*://*/*" ],
+  "version": "3.0.0",
+  "web_accessible_resources": [ "fonts/*", "libs/*", "*/*" ]
+}

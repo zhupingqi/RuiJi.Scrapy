@@ -1,0 +1,80 @@
+﻿
+.card-out {
+    box-sizing: border-box;
+}
+
+.card {
+    text-align: center;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 10px;
+    margin: 10px;
+}
+
+    .card p {
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 20px;
+    }
+
+    .card ul {
+        padding: 0;
+    }
+
+    .card li {
+        list-style: none;
+    }
+
+.free-engines img{
+    width:120px;
+    float:left;
+    max-height:40px;
+    margin:10px;
+}
+
+.block0 {
+    float: left;
+    margin: 10px 20px 20px 0px;
+    width: 150px;
+    height: 150px;
+}
+
+    .block0 num {
+        height: 30px;
+        display: block;
+        text-align: center;
+        line-height: 30px;
+        font-size: 12px;
+    }
+        .block0 num:first-child {
+            height: 70px;
+            display: block;
+            text-align: center;
+            line-height: 70px;
+            font-size: 32px;
+        }
+
+    .block0 p {
+        text-align: center;
+        font-size: 16px;
+    }
+
+.block1 {
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+    .block1 num {
+        display: inline-block;
+        float: right;
+    }
+
+.block2 {
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.promotion{
+    margin:10px;
+}
