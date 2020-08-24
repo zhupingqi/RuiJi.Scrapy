@@ -8,7 +8,7 @@
                 <b-collapse is-nav id="nav_collapse">
                     <b-navbar-nav class="ml-auto">
                         <b-navbar-nav>
-                            <b-nav-item href="https://github.com/zhupingqi" target="_blank"> <i class="fa fa-github"></i> https://github.com/zhupingqi</b-nav-item>
+                            <b-nav-item href="https://github.com/zhupingqi/RuiJi.Scraper" target="_blank"> <i class="fa fa-github"></i> https://github.com/zhupingqi/RuiJi.Scraper</b-nav-item>
                         </b-navbar-nav>
                         <b-navbar-nav>
                             <b-nav-item href="#" v-if="vipdate === null || vipdate === ''" @click="showTab(3)"><i class="fa fa-user"></i> {{i18n("openVip")}}</b-nav-item>
