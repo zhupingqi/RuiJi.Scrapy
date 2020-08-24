@@ -181,7 +181,6 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dist\" />
     <Folder Include="public\" />
     <Folder Include="public\css\" />
     <Folder Include="public\fonts\" />
