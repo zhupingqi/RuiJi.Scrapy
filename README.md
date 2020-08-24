@@ -5,6 +5,11 @@ RuiJi.Scraper Is a visual browser crawler extension, what you see is what you ge
 
 RuiJi.Scraper是一款可视化浏览器爬虫扩展,所见即所得，在编辑抽取规则的同时，就可以观察到抽取的最终结果。扩展规则编译器功能强大，简单易懂。如果您愿意，您可以将规则共享给其他使用者。同时我们准备了文本和视频的教程，帮助您快速掌握扩展的使用方法。
 
+> Register for 1 year VIP member
+
+> 注册送1年vip会员
+
+
 ### Public rules
 
 Public rule is a rule that can be used by all people, provided by official or other users in a shared way.
