@@ -23,7 +23,7 @@
                 </div>
                 <Vis v-if="!private"></Vis>
                 <template v-if="rules.length === 0">                    
-                    <b-alert variant="success" show style="margin:10px">这里空空如野...</b-alert>
+                    <b-alert variant="success" show style="margin:10px">{{i18n("empty")}}</b-alert>
                 </template>
                 <template v-else>
                     <b-table hover :items="rules" :fields="fields" class="ellipsis rules">
@@ -33,25 +33,25 @@
                             <div class="name">
                                 <h5>{{data.item.name}}</h5>
                                 &nbsp;&nbsp;
-                                <i class="fa fa-info-circle">
+                                <i class="fa fa-info-circle" :title="i18n('metas_count')">
                                     <em>{{ data.item.metas.length }}</em>
                                 </i>
-                                <i :class="data.item.myPraise? 'fa fa-thumbs-up':'fa fa-thumbs-o-up'" style="cursor:pointer" @click="praise(data.item)" v-if="data.item.pub === true">
+                                <i :class="data.item.myPraise? 'fa fa-thumbs-up':'fa fa-thumbs-o-up'" :title="i18n('praise')" style="cursor:pointer" @click="praise(data.item)" v-if="data.item.pub === true">
                                     <em>{{ data.item.praise }}</em>
                                 </i>
-                                <i :class="data.item.myStar? 'fa fa-star':'fa fa-star-o'" style="cursor:pointer" @click="star(data.item)" v-if="data.item.pub === true">
+                                <i :class="data.item.myStar? 'fa fa-star':'fa fa-star-o'" :title="i18n('star')" style="cursor:pointer" @click="star(data.item)" v-if="data.item.pub === true">
                                     <em>{{ data.item.star }}</em>
                                 </i>
-                                <i class="fa fa-random" v-if="data.item.pub === true">
+                                <i class="fa fa-random" :title="i18n('branch_count')" v-if="data.item.pub === true">
                                     <em>{{ data.item.branch }}</em>
                                 </i>
 
                                 <div v-if="private === true">
                                     <i :class="data.item.status === 2 ? 'fa fa-unlock': data.item.status === 1 ? 'fa fa-unlock-alt':'fa fa-lock'" :title="data.item.status === 2 ? i18n('status_public'): data.item.status === 1 ? i18n('status_inPublic'):i18n('status_private')" @click="share(data.item)"></i>
-                                    <i class="fa fa-times" @click="remove(data.item)"></i>
+                                    <i class="fa fa-times" :title="i18n('remove')" @click="remove(data.item)"></i>
                                 </div>
                                 <div v-else>
-                                    <i class="fa fa-user-secret" @click="report(data.item)"></i>
+                                    <i class="fa fa-user-secret" :title="i18n('report_title')" @click="report(data.item)"></i>
                                 </div>
                             </div>
                             <div>
@@ -92,6 +92,7 @@
     import Loading from '@/components/Loading.vue';
     import { RectViewer } from '@/core/ruiji/viewer'
     import { Extractor } from "@/core/ruiji/extractor";
+import { cwd } from 'process';
 
     @Component({
         components: {
@@ -179,7 +180,6 @@
         extract(rule: any) {
             let content = $(document.body).prop("outerHTML");
             let _this = this;
-
             _browser.sendMessage({
                 cmd: "utils.rule.get",
                 userRule: rule.userRule,
@@ -189,7 +189,6 @@
                     let extractor: Extractor = new Extractor(document.URL);
                     extractor.setFuncs(funcs);
                     let result = extractor.extract(content, res.data.rule.expression);
-
                 _browser.sendMessage({
                     cmd: "extract.update",
                     userRule: rule.userRule,

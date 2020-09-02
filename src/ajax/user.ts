@@ -127,9 +127,9 @@ export class User {
         });
     }
 
-    sendMail(email: string) {
+    sendMail(email: string, lang: string) {
         return $.ajax({
-            url: baseUrl + 'api/user/email/' + email,
+            url: baseUrl + 'api/user/email/' + email + '?lang=' + lang,
             type: 'GET'
         });
     }

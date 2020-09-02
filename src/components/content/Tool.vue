@@ -3,7 +3,7 @@
         <a href="javascript:;" @click="edit" :title="i18n('add')"><i class="fa fa-plus"></i></a>
         <b-dropdown variant="link" right size="sm" class="m-md-2" no-caret>
             <template slot="button-content">
-                <i class="fa fa-chevron-circle-down"></i>
+                <i class="fa fa-chevron-circle-down" :title="i18n('dock')"></i>
             </template>
             <b-dropdown-item @click="dock('left')" href="javascript:;"><i class="fa fa-align-left"></i> {{i18n("left")}}</b-dropdown-item>
             <b-dropdown-item @click="dock('bottom')" href="javascript:;"><i class="fa fa-window-minimize"></i> {{i18n("bottom")}}</b-dropdown-item>

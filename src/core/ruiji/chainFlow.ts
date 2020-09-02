@@ -1,5 +1,6 @@
 ﻿import $ from 'jquery';
 import Raphael, { RaphaelPaper, RaphaelElement, RaphaelBasicEventHandler, RaphaelPath, RaphaelAxisAlignedBoundingBox } from "raphael";
+import { _browser } from "@/core/utils";
 
 export enum ChainType {
     START,
@@ -229,22 +230,22 @@ export class ChainFlowItem {
         switch (type) {
             case ChainType.START: {
                 this.element = this.paper.circle(x, y, 20).attr({ fill: '#E0F1D0', stroke: "#03689a", cursor: "pointer" });
-                this.text = "开始";
+                this.text = _browser.getI18nMessage("start");
                 break;
             }
             case ChainType.END: {
                 this.element = this.paper.circle(x, y, 20).attr({ fill: '#FFCCCC', stroke: "#03689a", cursor: "pointer" });
-                this.text = "结束";
+                this.text = _browser.getI18nMessage("end");
                 break;
             }
             case ChainType.BRANCH: {
                 this.element = this.paper.rect(x, y, 100, 50, 5).attr({ fill: '#F4F4CC', stroke: "#03689a", cursor: "pointer" });
-                this.text = "分支";
+                this.text = _browser.getI18nMessage("branch");
                 break;
             }
             case ChainType.TASK: {
                 this.element = this.paper.rect(x, y, 100, 50, 5).attr({ fill: '#f6f7ff', stroke: "#03689a", cursor: "pointer" });
-                this.text = "任务";
+                this.text = _browser.getI18nMessage("task");
                 break;
             }
         }

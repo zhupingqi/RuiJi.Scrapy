@@ -165,7 +165,7 @@ class MessageHandler {
                 return this.rule.getRuleExt(message.ruleId);
             }
             case "sendMail": {
-                return this.user.sendMail(message.email);
+                return this.user.sendMail(message.email, message.lang);
             }
             /// chain 
             case "chain.list": {
@@ -190,7 +190,7 @@ class MessageHandler {
                     var extractor: Extractor = new Extractor(message.url);
                     extractor.setFuncs(res.data.rule.extended);
 
-                    let result = extractor.extract(message.content, res.data.rule.expression);
+                    let result = extractor.extract(message.content, res.data.rule.expression, res.data.rule.paging);
                     if (message.update) {
                         if (message.hub) {
                             if (result.tiles) {

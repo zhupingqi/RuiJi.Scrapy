@@ -214,7 +214,9 @@ class Chain {
         let extractor = new Extractor(url);
         extractor.setFuncs(rule.extended);
 
-        let result = extractor.extract(content, rule.expression);
+        let result = extractor.extract(content, rule.expression, rule.paging);
+
+        url = decodeURI(url);
         this.contentMap.set(url, content);
         this.currentNode.results.set(url, result);
 

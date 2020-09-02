@@ -25,7 +25,7 @@ export class Outline {
         this.inspectDom.data("opt", opt);
         $(document.body).append(this.inspectDom);
 
-        this.inspectTool = $("<ruiji-inspect-tool><i>&uarr;</i><i>&darr;</i><i>&larr;</i><i>&rarr;</i><i>&radic;</i></ruiji-inspect-tool>");
+        this.inspectTool = $("<ruiji-inspect-tool><ruiji-inspect-i>&uarr;</ruiji-inspect-i><ruiji-inspect-i>&darr;</ruiji-inspect-i><ruiji-inspect-i>&larr;</ruiji-inspect-i><ruiji-inspect-i>&rarr;</ruiji-inspect-i><ruiji-inspect-i>&times;</ruiji-inspect-i></ruiji-inspect-tool>");
         this.inspectTool.css({
             opacity: 0.5
         });
@@ -110,7 +110,7 @@ export class Outline {
             _this.showTool();
         });
 
-        this.inspectTool.find("i").click(function () {
+        this.inspectTool.find("ruiji-inspect-i").click(function () {
             var $this = $(this);
             if ($this.attr("disabled"))
                 return;

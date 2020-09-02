@@ -48,7 +48,9 @@ export class Extractor {
         this.funcs = funcs;
     }
 
-    extract(content: string, rule: any) {
+    extract(content: string, rule: any, paging: boolean = false) {
+        console.log(rule);
+
         this.processor.funcs = this.funcs;
         var pr = this.processor.process(content, rule.selectors);
         var c = pr.getContent();
@@ -57,14 +59,17 @@ export class Extractor {
 
         if (rule.blocks != null && rule.blocks.length > 0) {
             result.blocks = this.extractBlocks(content, rule.blocks);
-            var paging = result.blocks.filter(m => { return m.name === "_paging" }).first();
-            if (paging && paging.tiles !== null && paging.tiles.length === 0) {
-                paging = this.extract(content, rule.blocks.filter((m: any) => { return m.name === "_paging" }).first());
+
+            var pagingResult = result.blocks.filter(m => { return m.name === "_paging" }).first();
+            if (paging && pagingResult && pagingResult.tiles !== null && pagingResult.tiles.length === 0) {
+                pagingResult = this.extract(content, rule.blocks.filter((m: any) => {
+                    return m.name === "_paging"
+                }).first(), true);
             }
 
-            if (paging && paging.tiles !== null && paging.tiles.length > 0) {
-                result.paging = paging.tiles.map((p: any) => { return p.content });
-                result.paging = this.fixUrl(result.paging);
+            if (pagingResult && pagingResult.tiles !== null && pagingResult.tiles.length > 0) {
+                result.paging = pagingResult.tiles.map((p: any) => { return p.content });
+                result.paging = Uri.fixUrl(result.paging, this.url);
             }
         }
 
@@ -114,11 +119,12 @@ export class Extractor {
 
         keys.forEach(key => {
             var value = this.extractSelector(content, metas[key]);
-
+            
             if (value.length > 0) {
                 var u = value[0].content;
+
                 if ((key == "link" || key == "href" || key == "url") && !u.startsWith("http")) {
-                    u = this.fixUrl([u]).first();
+                    u = Uri.fixUrl([u], this.url).first();
                 }
 
                 results[key] = u;
@@ -184,21 +190,5 @@ export class Extractor {
                 return content;
             }
         }
-    }
-
-    private fixUrl(urls: string[]) {
-        if (this.url === "")
-            return urls;
-
-        var ary = Array.from(new Set(urls.map(url => {
-            if (url == "javascript:;" || url == "#" || url == "javascript:void(0)")
-                return "";
-
-            return Uri.href(new URL(this.url), url);
-        })));
-
-        return ary.filter((m) => {
-            return m !== "";
-        });
     }
 }

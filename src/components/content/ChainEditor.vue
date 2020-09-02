@@ -3,7 +3,7 @@
         <Loading v-if="loading===true"></Loading>
         <template v-else>
             <div id="edit_tool">
-                <a href="javascript:;" @click="test" :title="测试"><i class="fa fa-external-link"></i></a>
+                <a href="javascript:;" @click="test" :title="i18n('test')"><i class="fa fa-external-link"></i></a>
                 <a href="javascript:;" @click="save" :title="i18n('save')"><i class="fa fa-save"></i></a>
                 <a href="javascript:;" @click="cancelEdit" :title="i18n('cancel')"><i class="fa fa-ban"></i></a>
             </div>
@@ -21,13 +21,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    开始地址
+                                    {{i18n("start_url")}}
                                 </td>
                                 <td>
                                     <b-input-group size="sm">
                                         <b-form-input v-model="currentFlowItem.data.url"></b-form-input>
                                         <b-input-group-append>
-                                            <b-button variant="info" @click="testChainItem()">匹配规则</b-button>
+                                            <b-button variant="info" @click="testChainItem()">{{i18n("match_rule")}}</b-button>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </td>
@@ -37,25 +37,25 @@
                                     {{i18n("interval_s")}}
                                 </td>
                                 <td>
-                                    <b-form-input v-model="currentFlowItem.data.interval" size="sm"></b-form-input>
+                                    <b-form-input v-model="currentFlowItem.data.interval" type="number" size="sm"></b-form-input>
                                 </td>
                             </tr>
                         </template>
                         <template v-if="currentFlowItem.data.type === 3">
                             <tr>
-                                <td>规则类型</td>
+                                <td>{{i18n("rule_type")}}</td>
                                 <td>
                                     <template v-if="currentFlowItem.data.hub">
-                                        列表页面
+                                        {{i18n("catalog_page")}}
                                     </template>
                                     <template v-else>
-                                        文章页面
+                                        {{i18n("article_page")}}
                                     </template>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    保存结果
+                                    {{i18n("save_result")}}
                                 </td>
                                 <td>
                                     <b-form-checkbox v-model="currentFlowItem.data.save"></b-form-checkbox>
@@ -63,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    抓取分页
+                                    {{i18n("extract_page")}}
                                 </td>
                                 <td>
                                     <b-form-checkbox v-model="currentFlowItem.data.autoPaging"></b-form-checkbox>
@@ -72,11 +72,11 @@
                             <template v-if="currentFlowItem.data.autoPaging === true">
                                 <tr>
                                     <td>
-                                        最多抓取
+                                        {{i18n("max_pages")}}
                                     </td>
                                     <td>
-                                        <b-input-group size="sm" append="页">
-                                            <b-form-input v-model="currentFlowItem.data.maxPages"></b-form-input>
+                                        <b-input-group size="sm" :append="i18n('page')">
+                                            <b-form-input type="number" v-model="currentFlowItem.data.maxPages"></b-form-input>
                                         </b-input-group>
                                     </td>
                                 </tr>
@@ -85,13 +85,13 @@
                                         {{i18n("interval_s")}}
                                     </td>
                                     <td>
-                                        <b-form-input v-model="currentFlowItem.data.interval" size="sm"></b-form-input>
+                                        <b-form-input type="number" v-model="currentFlowItem.data.interval" size="sm"></b-form-input>
                                     </td>
                                 </tr>
                             </template>
                             <tr v-if="currentFlowItem.data.hub === true">
                                 <td>
-                                    停止
+                                    {{i18n("stop")}}
                                 </td>
                                 <td>
                                     <b-form-checkbox v-model="currentFlowItem.data.stop"></b-form-checkbox>
@@ -99,13 +99,13 @@
                             </tr>
                             <tr v-if="currentFlowItem.data.stop === false">
                                 <td>
-                                    目标地址
+                                    {{i18n("target_url")}}
                                 </td>
                                 <td>
                                     <b-input-group size="sm">
                                         <b-form-input v-model="currentFlowItem.data.url"></b-form-input>
                                         <b-input-group-append>
-                                            <b-button variant="info" @click="testChainItem()">匹配规则</b-button>
+                                            <b-button variant="info" @click="testChainItem()">{{i18n("match_rule")}}</b-button>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </td>
@@ -113,8 +113,8 @@
                         </template>
                         <tr>
                             <td colspan="2">
-                                <b-button variant="success" size="sm" @click="close()"><i class="fa fa-pencil"></i> 关闭</b-button>
-                                <b-button variant="success" size="sm" @click="removeChainItem()" v-if="currentFlowItem.data.type !== 0"><i class="fa fa-pencil"></i> 删除</b-button>
+                                <b-button variant="success" size="sm" @click="close()"><i class="fa fa-pencil"></i> {{i18n("fold")}}</b-button>
+                                <b-button variant="success" size="sm" @click="removeChainItem()" v-if="currentFlowItem.data.type !== 0"><i class="fa fa-pencil"></i> {{i18n("remove")}}</b-button>
                             </td>
                         </tr>
                     </table>
@@ -167,7 +167,7 @@
                 if (res.code == 200) {
                     _this.cancelEdit();
                 } else {
-                    Bus.$emit("alert", "保存出错，请稍后重试。");
+                    Bus.$emit("alert", _this.i18n("save_error"));
                 }
             });
         }
@@ -263,7 +263,7 @@
                         return;
 
                     if (response.code !== 200) {
-                        _this.message = response.msg;
+                        _this.message = _this.i18n("match_rule_error");
                         _this.loading = false;
                         return;
                     }
@@ -336,7 +336,7 @@
         }
 
         table.chainEdit tr > td:first-child {
-            width: 80px;
+            width: 135px;
         }
 
             table.chainEdit tr > td:first-child div {

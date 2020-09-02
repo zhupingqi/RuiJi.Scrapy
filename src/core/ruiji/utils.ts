@@ -37,6 +37,37 @@ export class Utils {
 };
 
 export class Uri {
+    static fixUrl(urls: string[], baseUrl: string = ""): string[] {
+        var ary = Array.from(new Set(urls.map(url => {
+            if (url == "javascript:;" || url == "#" || url == "javascript:void(0)")
+                return "";
+
+            if (baseUrl === "") {
+                try {
+                    return decodeURI(url);
+                } catch{
+                    return "";
+                }
+            } else {     
+                try {
+                    var u = Uri.href(new URL(baseUrl), url);
+                    return decodeURI(u);
+                } catch{
+                    return "";
+                }
+            }
+        })));
+
+        return ary.filter((m) => {
+            return m !== "";
+        });
+    }
+
+    static checkURL(url: string) {
+        var objExp = /^(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
+        return objExp.test(url);
+    }
+
     static href(url: URL, relativeUrl: string): string {
         if (relativeUrl.startsWith("http")) {
             return relativeUrl;

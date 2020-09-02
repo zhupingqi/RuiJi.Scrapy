@@ -113,7 +113,7 @@ class RuiJiWidget {
                 extractor.setFuncs(res.funcs);
 
                 let content = $(document.body).prop("outerHTML");
-                let result = extractor.extract(content, res.rule.expression);
+                let result = extractor.extract(content, res.rule.expression, res.rule.paging);
 
                 _browser.sendMessage({ cmd: "extract.paging.excute", url: document.URL, content: content }, (response) => {
                     if (response && response.current > 0) {

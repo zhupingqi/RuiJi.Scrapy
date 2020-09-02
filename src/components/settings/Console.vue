@@ -30,21 +30,21 @@
                     </div>
                     <div class="col-md-6 info-list">
                         <div class="console-title">{{i18n("account")}}</div>
-                        <div class="alert alert-success">
+                        <div class="alert alert-success d-flex justify-content-between">
                             {{i18n("type")}}
                             <num>{{ i18n(stat.product.name) }}</num>
+                            <num>&nbsp;</num>
+                            <num>&nbsp;</num>
                         </div>
                         <div class="alert alert-success d-flex justify-content-between">
                             {{i18n("starsQuota")}}
                             <num :title="i18n('quota')">{{ stat.product.stars }}</num>
-                            <num :title="i18n('reward')">+{{ stat.reward.stars }}</num>
                             <num :title="i18n('used')">-{{ stat.current.stars }}</num>
                             <num :title="i18n('balance')">{{ stat.product.stars + stat.reward.stars - stat.current.stars }}</num>
                         </div>
                         <div class="alert alert-success d-flex justify-content-between">
                             {{i18n("rulesQuota")}}
                             <num :title="i18n('quota')">{{ stat.product.rules }}</num>
-                            <num :title="i18n('reward')">+{{ stat.reward.rules }}</num>
                             <num :title="i18n('used')">-{{ stat.current.rules }}</num>
                             <num :title="i18n('balance')">{{ stat.product.rules + stat.reward.rules - stat.current.rules }}</num>
                         </div>
@@ -65,6 +65,7 @@
                             <span :class="stat.product.productId===1?'alert alert-danger btn-sm':'alert alert-success btn-sm'" v-html="i18n('img_download') + (stat.product.productId==1 ? ' &Chi;' : ' √' )"></span>
                             <span :class="stat.product.productId===1?'alert alert-danger btn-sm':'alert alert-success btn-sm'" v-html="i18n('autoPaging') + (stat.product.productId==1 ? ' &Chi;' : ' √' )"></span>
                             <span :class="stat.product.productId===1?'alert alert-danger btn-sm':'alert alert-success btn-sm'" v-html="i18n('excute_func') + (stat.product.productId==1 ? ' &Chi;' : ' √' )"></span>
+                            <span :class="stat.product.productId===1?'alert alert-danger btn-sm':'alert alert-success btn-sm'" v-html="i18n('chain') + (stat.product.productId==1 ? ' &Chi;' : ' √' )"></span>
                         </div>
                     </div>
                 </div>

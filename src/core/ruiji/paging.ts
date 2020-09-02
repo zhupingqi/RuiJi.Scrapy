@@ -49,8 +49,9 @@ class AutoPaging {
         let extractor = new Extractor(this.url);
         extractor.setFuncs(this.funcs);
 
-        let result = extractor.extract(content, this.rule.expression);
+        let result = extractor.extract(content, this.rule.expression, this.rule.paging);
         let pages = result.paging || [];
+        url = decodeURI(url);
         this.resultManager.set(url, result, false, null);
 
         this.resultManager.addUrl(pages);

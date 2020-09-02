@@ -62,7 +62,7 @@
                     return;
 
                 if (response.code !== 200) {
-                    _this.message = response.msg;
+                    _this.message = _this.i18n("chain_error");
                     _this.loading = false;
                     return;
                 }

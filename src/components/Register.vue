@@ -21,10 +21,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input name="referee" type="text" class="form-control" v-bind:placeholder="i18n('proposer','code')" id="referee" v-model="referee">
-                        <p class="alert alert-success" style="margin-top: .75rem;font-size: 12px;" v-html="i18n('proposer_warn')"></p>
-                    </div>
-                    <div class="form-group">
                         <input name="password" type="password" class="form-control" required="required" v-bind:placeholder="i18n('password')" id="password" v-model="password">
                     </div>
                     <div class="form-group">
@@ -102,7 +98,9 @@
                 }
             }, 1000);
 
-            _browser.sendMessage({ cmd: "sendMail", email: this.email }, (response) => {
+            let lang: string = _browser.getUILanguage();
+
+            _browser.sendMessage({ cmd: "sendMail", email: this.email, lang: lang }, (response) => {
                 if (response.code !== 200) {
                     alert(response.msg);
                     clearInterval(timer);
@@ -164,8 +162,8 @@
 </script>
 
 <style>
-    #register{
-        max-width:700px;
+    #register {
+        max-width: 700px;
     }
 
     body {
@@ -221,7 +219,7 @@
         border-top-right-radius: 0;
     }
 
-    ul li{
-        list-style:none;
+    ul li {
+        list-style: none;
     }
 </style>

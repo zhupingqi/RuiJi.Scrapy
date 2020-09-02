@@ -1,5 +1,6 @@
 ﻿import $ from 'jquery';
 import { Block } from "@/core/vis/block";
+import { Uri } from '../ruiji/utils';
 
 export class ScraperOption {
     rerange: boolean = false;
@@ -69,17 +70,6 @@ export class Scraper {
         return subs;
     }
 
-    fixUrl(url: string) {
-        if (url === undefined)
-            return "";
-
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            return new URL(document.URL).origin + url;
-        }
-
-        return url;
-    }
-
     getPath(el: HTMLElement, subBlock: HTMLElement[]) {
         let xpath = '';
 
@@ -133,7 +123,7 @@ export class Scraper {
 
                 doms.push({
                     href: true,
-                    text: this.fixUrl($dom.attr("href") as string).trim()
+                    text: Uri.fixUrl([ $dom.attr("href") as string ]).first()
                 });
 
                 break;

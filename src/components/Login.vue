@@ -18,10 +18,10 @@
             <span class="float-right"><a class="" href="forget.html">{{i18n("forget")+'?'+i18n("click")}}</a></span>
         </p>
         <p class="form-signin">
-            <a href="mailto:lixiang@ruijihg.com">
+            <a href="mailto:lixiang@iotsys.net">
                 {{i18n("official","email")}}:
                 <i class="glyphicon glyphicon-envelope"></i>
-                lixiang@ruijihg.com
+                lixiang@iotsys.net
             </a>
         </p>
     </div>

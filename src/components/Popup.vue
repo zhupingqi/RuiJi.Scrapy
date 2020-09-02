@@ -6,8 +6,8 @@
                 <div class="logo">
                     <img src="img/icon48.png" />
                     <div>{{ version }}-beta</div>
-                    <div><a href="http://www.scraper.top" target="_blank">插件官网</a></div>
-                    <div><a href="http://www.iotsys.net" target="_blank">极创意想出品</a></div>
+                    <div><a href="http://www.scraper.top" target="_blank">{{i18n("homepage")}}</a></div>
+                    <div><a href="http://www.iotsys.net" target="_blank">{{i18n(by)}}</a></div>
                 </div>
             </div>
             <template v-if="error === true">

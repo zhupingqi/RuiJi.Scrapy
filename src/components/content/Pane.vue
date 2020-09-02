@@ -2,7 +2,7 @@
     <div id="pane">
         <template v-if="connectError===true">
             <b-alert show variant="danger">
-                Connection lost, you need to refresh the current page
+                {{i18n("connection_error")}}
             </b-alert>
         </template>
         <template v-else>
@@ -35,13 +35,13 @@
                         <tr>
                             <td colspan="2">{{i18n("rules")}} {{ autoPaging.rule.name }}</td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td colspan="2">
                                 <b-form-checkbox v-model="autoPaging.deep" value="true" unchecked-value="false">
                                     Deep
                                 </b-form-checkbox>
                             </td>
-                        </tr>
+                        </tr>-->
                         <tr>
                             <td>{{i18n("interval")}}</td>
                             <td><b-form-input v-model="autoPaging.interval" size="sm"></b-form-input></td>
